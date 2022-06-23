@@ -26,7 +26,11 @@ class QuotesController < ApplicationController
 
     def destroy
         @quote = Quote.find(params[:id])
-        @quote.destroy
+        if @quote.destroy
+            render status: 200, json: {
+                message: "This quote has been destroyed successfully."
+            }
+        end
     end
 
     private
